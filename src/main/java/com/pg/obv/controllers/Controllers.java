@@ -1,24 +1,22 @@
 package com.pg.obv.controllers;
 
-import org.springframework.beans.factory.annotation.Required;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RequestParam;
-import org.springframework.web.bind.annotation.RestController;
+import com.pg.obv.models.Book;
+import com.pg.obv.services.ProjServices;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.web.bind.annotation.*;
+
+import java.util.List;
 
 @RestController
 public class Controllers {
+	@Autowired
+	ProjServices projServices;
 	
-	@GetMapping("/")
-	public String Hello(@RequestParam(required = true) String name ) {
-		return name;
+	@RequestMapping(value="/",method = RequestMethod.GET)
+	public List<Book> bookData(){
+		return projServices.getBooks();
 	}
 	
-	@PostMapping("/post")
-	public String postMap() {
-		String text = "";
-		return text;
-	}
+
 	
 }
