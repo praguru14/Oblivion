@@ -3,7 +3,7 @@ package com.pg.obv.models;
 public class Book {
 
 
-    private  String id;
+    private  int id;
     private String name;
     private int value;
     private String author;
@@ -11,18 +11,18 @@ public class Book {
     public Book() {
     }
 
-    public Book(String id, String name, int value, String author) {
+    public Book(int id, String name, int value, String author) {
         this.id = id;
         this.name = name;
         this.value = value;
         this.author = author;
     }
 
-    public String getId() {
+    public int getId() {
         return id;
     }
 
-    public void setId(String id) {
+    public void setId(int id) {
         this.id = id;
     }
 

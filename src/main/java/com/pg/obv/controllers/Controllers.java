@@ -16,7 +16,26 @@ public class Controllers {
 	public List<Book> bookData(){
 		return projServices.getBooks();
 	}
-	
 
+	@RequestMapping(value="/bookid",method = RequestMethod.GET)
+	public Book bookById(@RequestParam("id") int id){
+	return projServices.getSingleBookById(id);
+	}
+
+	@RequestMapping(value="/books",method = RequestMethod.POST)
+	public Book postBooks(@RequestBody Book book){
+		Book b = projServices.postBooks(book);
+		return book;
+	}
+
+	@RequestMapping(value = "books/{id}",method = RequestMethod.DELETE)
+	public Book deleteBookHandler(@PathVariable("id") int id){
+	return projServices.DeleteBook(id);
+	}
+
+	@RequestMapping(value = "books/{id}",method = RequestMethod.PUT)
+	public void updateBookData(@RequestBody Book book,@PathVariable("id") int id){
+		 projServices.updateBook(book,id);
+	}
 	
 }
