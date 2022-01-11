@@ -2,6 +2,7 @@ package com.pg.obv.controllers;
 
 import com.pg.obv.models.Book;
 import com.pg.obv.services.ProjServices;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
@@ -11,6 +12,7 @@ import java.util.List;
 
 @RestController
 public class Controllers {
+
 	@Autowired
 	ProjServices projServices;
 	
@@ -59,7 +61,8 @@ public class Controllers {
 	public ResponseEntity<Book> deleteBookHandler(@PathVariable("id") int id){
 
 		try {
-			return new ResponseEntity(projServices.DeleteBook(id),HttpStatus.OK);
+			projServices.DeleteBook(id);
+			return ResponseEntity.ok().build();
 		}
 		catch (Exception e){
 			e.printStackTrace();
