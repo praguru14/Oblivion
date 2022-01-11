@@ -17,6 +17,6 @@ public interface ProjServices {
 
     Book DeleteBook(int id);
 
-    void updateBook(Book book,int id);
+    void updateBook(Book book, int id);
 
 }

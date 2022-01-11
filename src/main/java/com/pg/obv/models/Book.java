@@ -60,3 +60,12 @@ public class Book {
                 '}';
     }
 }
+
+//	@RequestMapping(value="/",method = RequestMethod.GET)
+//	public ResponseEntity<List<Book>> bookData(){
+//		List<Book> list = projServices.getBooks();
+//		if(list.size()<=0){
+//			return ResponseEntity.status(HttpStatus.NOT_FOUND).build();
+//		}
+//		return ResponseEntity.of(Optional.of(list));
+//	}

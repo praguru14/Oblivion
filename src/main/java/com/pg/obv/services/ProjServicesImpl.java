@@ -38,12 +38,13 @@ public class ProjServicesImpl implements ProjServices {
     }
 
     @Override
-    public void updateBook(Book book,int id) {
+    public void updateBook(Book book, int id) {
        bookData=  bookData.stream().map(b->{
                 if(b.getId()==id){
                     b.setValue(book.getValue());
                 }
                 return b;
                 }).collect(Collectors.toList());
+
     }
 }
