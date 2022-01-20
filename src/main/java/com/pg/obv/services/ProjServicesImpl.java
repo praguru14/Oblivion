@@ -1,49 +1,42 @@
 package com.pg.obv.services;
 
+
+import com.pg.obv.dao.BookRepository;
 import com.pg.obv.models.Book;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
 import org.springframework.stereotype.Service;
-import java.util.ArrayList;
 import java.util.List;
-import java.util.stream.Collectors;
+
 
 @Component
 @Service
 public class ProjServicesImpl implements ProjServices {
-
-    private static List<Book> bookData = new ArrayList<>();
-
-    static {
-        bookData.add(new Book(123,"PG",450,"Prafull"));
-        bookData.add(new Book(456,"PrafG",1450,"PrafullG"));
-    }
+    @Autowired
+    BookRepository bookRepository;
 
     @Override
     public List<Book>  getBooks() {
-        return bookData;
+      List<Book> list = (List<Book>) bookRepository.findAll();
+        return  list;
     }
 
     public Book getSingleBookById(int id){
-    Book ID = bookData.stream().filter(e -> e.getId()==id).findFirst().get();
+        Book ID  =  bookRepository.findById(id);
     return ID;
     }
 
     public Book postBooks(Book b){
-       bookData.add(b);
-        return b;
+       Book book = bookRepository.save(b);
+        return book;
     }
-    public Book DeleteBook(int id){
-    Book deletedBook = bookData.stream().filter(e ->e.getId()!=id).findFirst().get();
-    return deletedBook;
+    public void DeleteBook(int id){
+        bookRepository.deleteById(id);
     }
 
     @Override
-    public void updateBook(Book book,int id) {
-       bookData=  bookData.stream().map(b->{
-                if(b.getId()==id){
-                    b.setValue(book.getValue());
-                }
-                return b;
-                }).collect(Collectors.toList());
+    public void updateBook(Book book, int id) {
+        book.setId(id);
+        bookRepository.save(book);
     }
 }

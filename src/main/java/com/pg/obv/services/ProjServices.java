@@ -15,8 +15,8 @@ public interface ProjServices {
 
     Book postBooks(Book b);
 
-    Book DeleteBook(int id);
+    void DeleteBook(int id);
 
-    void updateBook(Book book,int id);
+    void updateBook(Book book, int id);
 
 }
