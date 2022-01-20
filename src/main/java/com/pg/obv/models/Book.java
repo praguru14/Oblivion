@@ -1,5 +1,7 @@
 package com.pg.obv.models;
 
+import com.fasterxml.jackson.annotation.JsonManagedReference;
+
 import javax.persistence.*;
 
 @Entity
@@ -11,12 +13,14 @@ public class Book {
     private  int id;
     private String name;
     private int value;
-    private String author;
+    @OneToOne(fetch = FetchType.EAGER,cascade = CascadeType.ALL)
+    @JsonManagedReference
+    private Author author;
 
     public Book() {
     }
 
-    public Book(int id, String name, int value, String author) {
+    public Book(int id, String name, int value, Author author) {
         this.id = id;
         this.name = name;
         this.value = value;
@@ -47,11 +51,11 @@ public class Book {
         this.value = value;
     }
 
-    public String getAuthor() {
+    public Author getAuthor() {
         return author;
     }
 
-    public void setAuthor(String author) {
+    public void setAuthor(Author author) {
         this.author = author;
     }
 
