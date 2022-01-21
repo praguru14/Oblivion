@@ -10,6 +10,7 @@ import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 import org.springframework.web.multipart.MultipartFile;
+import org.springframework.web.servlet.support.ServletUriComponentsBuilder;
 
 @RestController
 public class FileUploadController {
@@ -20,17 +21,13 @@ public class FileUploadController {
     @PostMapping("/upload")
     public ResponseEntity<String> uploadFile(@RequestParam("image")MultipartFile file){
         try{
-
             Boolean check = fileUploadHelper.fileUploadOrNot(file);
-
-            if(check){
-                return new ResponseEntity<>("File Uploaded", HttpStatus.OK);
-            }
-            return new ResponseEntity<>("error file not uploaded",HttpStatus.NO_CONTENT);
+            if(check)
+                return new ResponseEntity<>(ServletUriComponentsBuilder.fromCurrentContextPath().path("images/").path(file.getOriginalFilename()).toUriString(),HttpStatus.OK);
         }
         catch (Exception e){
             e.printStackTrace();
-            return new ResponseEntity<>("error",HttpStatus.NOT_FOUND);
         }
+        return new ResponseEntity<>("error",HttpStatus.NOT_FOUND);
     }
 }
