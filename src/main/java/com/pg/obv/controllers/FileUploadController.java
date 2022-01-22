@@ -13,7 +13,7 @@ import org.springframework.web.multipart.MultipartFile;
 import org.springframework.web.servlet.support.ServletUriComponentsBuilder;
 
 @RestController
-public class FileUploadController {
+public class FileUploadController  {
 
     @Autowired
     private FileUploadHelper fileUploadHelper;
